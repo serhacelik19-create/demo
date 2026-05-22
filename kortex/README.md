@@ -1,4 +1,4 @@
-# Kortex
+# Kortex Educational Platform
 
 Kortex is a full-stack education management and YKS preparation platform built for institutions, teachers, students, and parents. The product is designed around the Turkish education system, including YKS-focused study flows, institution workflows, parent communication, exam tracking, and student progress monitoring.
 
