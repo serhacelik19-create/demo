@@ -1,12 +1,13 @@
 # Kortex
 
-Kortex is a full-stack education management and YKS preparation platform built for institutions, teachers, students, and parents.
+Kortex is a full-stack education management and YKS preparation platform built for institutions, teachers, students, and parents. The product is designed around the Turkish education system, including YKS-focused study flows, institution workflows, parent communication, exam tracking, and student progress monitoring.
 
 This repository is a sanitized public demo of the project. It keeps the real application structure, UI code, backend routes, data models, and mobile app flow visible for portfolio review, while removing private infrastructure, production secrets, and external service credentials.
 
 ## What The Project Shows
 
 - A multi-role education platform with institution, teacher, student, and parent flows.
+- Product flows shaped around the Turkish education system and YKS preparation process.
 - A React-based institution panel for student tracking, exams, attendance, guidance, reports, accounting, content assignments, and notifications.
 - A Flutter mobile app for YKS study workflows, question solving, practice screens, parent access, and student-facing progress features.
 - A Node.js/Express backend with Prisma models, authentication middleware, scoped routes, reporting endpoints, and demo-safe AI service boundaries.
