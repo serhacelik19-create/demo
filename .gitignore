@@ -3,6 +3,8 @@
 .env.*
 *.log
 *.zip
+package-lock.json
+pubspec.lock
 
 node_modules/
 dist/

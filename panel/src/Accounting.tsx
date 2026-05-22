@@ -6,7 +6,6 @@ import {
   Wallet, 
   Filter, 
   Calendar, 
-  MoreHorizontal,
   ChevronRight,
   TrendingUp,
   CreditCard,
@@ -22,16 +21,11 @@ import {
   DollarSign
 } from 'lucide-react';
 import { 
-  BarChart, 
-  Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
   ResponsiveContainer, 
-  Cell,
-  LineChart,
-  Line,
   AreaChart,
   Area
 } from 'recharts';
@@ -45,7 +39,7 @@ const Accounting: React.FC = () => {
   const [categories, setCategories] = useState<any[]>([]);
   const [students, setStudents] = useState<any[]>([]);
   const [selectedStudentId, setSelectedStudentId] = useState<number | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showInstallmentModal, setShowInstallmentModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState<any>(null);
