@@ -1,5 +1,8 @@
 # Multi-Project Showcase & AI-Driven Development
 
+> [!NOTE]
+> **Workspace Status: Active Development** — The projects inside this workspace are actively maintained, refactored, and updated with new features and modern methodologies.
+
 Welcome to this repository. This space serves as a central hub displaying diverse software architectures, modern full-stack methodologies, and cutting-edge paradigms. 
 
 ---

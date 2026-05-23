@@ -1,5 +1,8 @@
 # ChefVision AI - Smart Recipe Advisor
 
+> [!NOTE]
+> **Status: Active Development** — This project is currently in active development. Features are continuously being updated, refactored, and improved.
+
 ChefVision AI is a smart recipe advisor and ingredient recognition system powered by advanced AI and computer vision. It allows users to scan kitchen ingredients using their camera, receive personalized recipe recommendations, and interact with an integrated voice assistant for hands-free cooking guidance.
 
 This repository is a sanitized public demo of the project, showcasing frontend layout, backend APIs, data structures, and mobile app flows for portfolio review, while keeping private API keys and database credentials safe.
