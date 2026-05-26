@@ -1,0 +1,37 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model CompetitorAnalysis {
+  id        String   @id @default(uuid())
+  keyword   String   @unique
+  competitors String // JSON string of competitors data (title, url, headings)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Outline {
+  id        String   @id @default(uuid())
+  keyword   String   @unique
+  headings  String   // JSON string of custom outline headings
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Article {
+  id           String   @id @default(uuid())
+  keyword      String   @unique
+  title        String
+  content      String   // HTML code
+  tone         String
+  seoScore     Int      @default(0)
+  status       String   // "draft" | "published"
+  publishedUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

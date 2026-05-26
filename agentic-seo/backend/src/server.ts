@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { ScraperService } from './services/scraperService';
 import { GeminiService } from './services/geminiService';
 import { PublishService } from './services/publishService';
+import { prisma } from './lib/prisma';
 
 dotenv.config();
 
@@ -40,6 +41,23 @@ app.post('/api/analyze', async (req: Request, res: Response) => {
     // 2. SEO Outline generation
     const outline = await GeminiService.generateSEOOutline(keyword, competitors, size, tone);
 
+    // Save to PostgreSQL DB
+    try {
+      await prisma.competitorAnalysis.upsert({
+        where: { keyword },
+        update: { competitors: JSON.stringify(competitors) },
+        create: { keyword, competitors: JSON.stringify(competitors) }
+      });
+      await prisma.outline.upsert({
+        where: { keyword },
+        update: { headings: JSON.stringify(outline) },
+        create: { keyword, headings: JSON.stringify(outline) }
+      });
+      console.log(`[DB] Successfully persisted competitor analysis & outline for keyword: "${keyword}"`);
+    } catch (dbError: any) {
+      console.error(`[DB] Error saving analysis: ${dbError.message}`);
+    }
+
     res.json({
       success: true,
       keyword,
@@ -67,6 +85,29 @@ app.post('/api/generate-article', async (req: Request, res: Response) => {
     
     const content = await GeminiService.generateFullArticle(keyword, outline, competitors, tone);
 
+    // Save to PostgreSQL DB
+    try {
+      await prisma.article.upsert({
+        where: { keyword },
+        update: {
+          title: outline.suggestedTitle || `SEO Article for ${keyword}`,
+          content,
+          tone: tone || 'Professional',
+          status: 'draft'
+        },
+        create: {
+          keyword,
+          title: outline.suggestedTitle || `SEO Article for ${keyword}`,
+          content,
+          tone: tone || 'Professional',
+          status: 'draft'
+        }
+      });
+      console.log(`[DB] Successfully persisted generated article draft for keyword: "${keyword}"`);
+    } catch (dbError: any) {
+      console.error(`[DB] Error saving article: ${dbError.message}`);
+    }
+
     res.json({
       success: true,
       content
@@ -91,6 +132,25 @@ app.post('/api/publish', async (req: Request, res: Response) => {
     console.log(`\n[API] Received publish request. Target Platform: ${platform}`);
     
     const result = await PublishService.publish(title, content, platform);
+
+    // Update status in PostgreSQL DB
+    try {
+      const article = await prisma.article.findFirst({
+        where: { title }
+      });
+      if (article) {
+        await prisma.article.update({
+          where: { id: article.id },
+          data: { 
+            status: 'published', 
+            publishedUrl: result.url || '' 
+          }
+        });
+        console.log(`[DB] Successfully updated article publishing status to "${platform}" for: "${title}"`);
+      }
+    } catch (dbError: any) {
+      console.error(`[DB] Error updating article publish status: ${dbError.message}`);
+    }
 
     res.json(result);
   } catch (error: any) {

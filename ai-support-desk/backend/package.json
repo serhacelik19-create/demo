@@ -1,12 +1,14 @@
 {
-  "name": "agentic-seo-backend",
+  "name": "ai-support-desk-backend",
   "version": "1.0.0",
-  "description": "Agentic SEO & İçerik Otopilotu Backend Servisi",
+  "description": "AI-Assisted Multi-Channel Live Support Desk Backend Service",
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
@@ -14,7 +16,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "puppeteer": "^22.10.0"
+    "socket.io": "^4.7.5",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

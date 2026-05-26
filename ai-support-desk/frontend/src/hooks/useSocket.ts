@@ -1,0 +1,156 @@
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import { io, Socket } from "socket.io-client";
+import { BACKEND_URL } from "@/lib/constants";
+import { Conversation, Message } from "@/lib/types";
+
+interface UseSocketReturn {
+  isConnected: boolean;
+  conversations: Conversation[];
+  selectedId: string | null;
+  setSelectedId: (id: string | null) => void;
+  isGenerating: boolean;
+  sendMessage: (conversationId: string, content: string) => void;
+  resolveTicket: (conversationId: string) => void;
+  triggerSimulator: () => void;
+  redraft: (conversationId: string, lastMessageId: string, tone: string) => void;
+  sendSimulatorMsg: (conversationId: string, content: string) => void;
+}
+
+export function useSocket(): UseSocketReturn {
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isConnected, setIsConnected] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const socketRef = useRef<Socket | null>(null);
+
+  useEffect(() => {
+    const socket = io(BACKEND_URL);
+    socketRef.current = socket;
+
+    socket.on("connect", () => {
+      setIsConnected(true);
+      socket.emit("ticket:list");
+    });
+
+    socket.on("disconnect", () => {
+      setIsConnected(false);
+    });
+
+    socket.on("ticket:list:response", (loadedTickets: Conversation[]) => {
+      setConversations(loadedTickets);
+      if (loadedTickets.length > 0) {
+        setSelectedId((prev) => prev || loadedTickets[0].id);
+      }
+    });
+
+    socket.on("ticket:new", (newTicket: Conversation) => {
+      setConversations((prev) => {
+        if (prev.some((t) => t.id === newTicket.id)) return prev;
+        return [newTicket, ...prev];
+      });
+      setSelectedId((curr) => curr || newTicket.id);
+    });
+
+    socket.on("message:new", (payload: { conversationId: string; message: Message }) => {
+      const { conversationId, message } = payload;
+      setConversations((prev) =>
+        prev.map((c) => {
+          if (c.id === conversationId) {
+            return {
+              ...c,
+              updatedAt: new Date().toISOString(),
+              messages: [...c.messages, message],
+            };
+          }
+          return c;
+        })
+      );
+      if (message.sender === "customer") {
+        setIsGenerating(true);
+      }
+    });
+
+    socket.on(
+      "message:draft:updated",
+      (payload: { conversationId: string; messageId: string; draftReply: string }) => {
+        const { conversationId, messageId, draftReply } = payload;
+        setConversations((prev) =>
+          prev.map((c) => {
+            if (c.id === conversationId) {
+              return {
+                ...c,
+                messages: c.messages.map((m) =>
+                  m.id === messageId ? { ...m, draftReply } : m
+                ),
+              };
+            }
+            return c;
+          })
+        );
+        setIsGenerating(false);
+      }
+    );
+
+    socket.on("ticket:updated", (updatedTicket: Conversation) => {
+      setConversations((prev) =>
+        prev.map((c) => (c.id === updatedTicket.id ? updatedTicket : c))
+      );
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  const sendMessage = useCallback((conversationId: string, content: string) => {
+    if (!socketRef.current || !content.trim()) return;
+    socketRef.current.emit("message:send", {
+      conversationId,
+      content: content.trim(),
+    });
+  }, []);
+
+  const resolveTicket = useCallback((conversationId: string) => {
+    if (!socketRef.current) return;
+    socketRef.current.emit("ticket:resolve", conversationId);
+  }, []);
+
+  const triggerSimulator = useCallback(() => {
+    if (!socketRef.current) return;
+    socketRef.current.emit("simulator:trigger");
+  }, []);
+
+  const redraft = useCallback((conversationId: string, lastMessageId: string, tone: string) => {
+    if (!socketRef.current) return;
+    setIsGenerating(true);
+    socketRef.current.emit("ai:redraft", {
+      conversationId,
+      lastMessageId,
+      tone,
+    });
+  }, []);
+
+  const sendSimulatorMsg = useCallback((conversationId: string, content: string) => {
+    if (!socketRef.current || !content.trim()) return;
+    setIsGenerating(true);
+    socketRef.current.emit("message:incoming", {
+      conversationId,
+      content: content.trim(),
+    });
+  }, []);
+
+  return {
+    isConnected,
+    conversations,
+    selectedId,
+    setSelectedId,
+    isGenerating,
+    sendMessage,
+    resolveTicket,
+    triggerSimulator,
+    redraft,
+    sendSimulatorMsg,
+  };
+}

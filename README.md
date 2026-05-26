@@ -52,14 +52,20 @@ A smart recipe advisor and ingredient recognition system named **ChefVision AI**
 A high-performance, professional-grade **AI-Assisted SEO & Content Autopilot** rapid prototype designed to automate competitor search analysis and generate long-form content pipelines.
 * **backend**: Node.js + TypeScript + Express backend orchestrating Puppeteer browser crawlers, outline synthesis, and advanced AI copywriting prompts.
 * **frontend**: Next.js 15 (App Router, Turbopack) dashboard featuring a real-time SurferSEO-style SEO Score calculator, custom React select overlays, and human-in-the-loop outline editors.
-* *For setup and run instructions, please refer to the [Agentic SEO README](./agentic-seo/README.md) or the [Agentic SEO Türkçe Oku-Beni](./agentic-seo/README_TR.md).*
+* *For setup and run instructions, please refer to the [Agentic SEO README](./agentic-seo/README.md).*
+
+### 5. [ai-support-desk](./ai-support-desk)
+A high-performance, professional-grade **AI Support Desk & Real-Time Copilot** rapid prototype (Proof of Concept - PoC) designed to coordinate incoming customer tickets, utilize real-time WebSockets, and integrate Google Gemini for dynamic response drafting.
+* **backend**: Node.js + TypeScript + Express + Socket.io server with strict Zod validation schemas and Prisma ORM.
+* **frontend**: Next.js 15 (App Router, Turbopack) dashboard featuring real-time chat, AI Copilot suggestions, live tone modifiers, and persistence-backed light/dark theme systems.
+* *For setup and run instructions, please refer to the [AI Support Desk README](./ai-support-desk/README.md).*
 
 ---
 
 ## 🛠️ Key Technologies Showcased
 
-- **Frontend**: Next.js (React/TypeScript), Flutter (Dart), TailwindCSS, Vanilla CSS, Lottie, Framer Motion
-- **Backend & Database**: Node.js (TypeScript), Python (FastAPI), Express, Puppeteer, PostgreSQL, Prisma ORM, Redis
+- **Frontend**: Next.js (React/TypeScript), Flutter (Dart), TailwindCSS, Vanilla CSS, Lottie, Framer Motion, Socket.io Client
+- **Backend & Database**: Node.js (TypeScript), Python (FastAPI), Express, Socket.io, Puppeteer, PostgreSQL, Prisma ORM, Redis, SQLite, Zod
 - **Integrations & AI**: Gemini AI (Image Scan, Text, and Translation APIs), Schema.org (JSON-LD), Firebase Auth, Apple/Google StoreKit billing interfaces, Speech-to-Text & TTS voice engines
 - **Methods**: Agentic Workflows, AI-Assisted Pair Programming, Rapid Prototyping, Human-in-the-Loop Orchestration
 
