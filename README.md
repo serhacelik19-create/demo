@@ -48,12 +48,18 @@ A smart recipe advisor and ingredient recognition system named **ChefVision AI**
 * **dashboard**: Next.js (App Router) web dashboard for admin oversight.
 * *For setup and run instructions, please refer to the [ChefVision README](./chefvision/README.md).*
 
+### 4. [agentic-seo](./agentic-seo)
+A high-performance, professional-grade **AI-Assisted SEO & Content Autopilot** rapid prototype designed to automate competitor search analysis and generate long-form content pipelines.
+* **backend**: Node.js + TypeScript + Express backend orchestrating Puppeteer browser crawlers, outline synthesis, and advanced AI copywriting prompts.
+* **frontend**: Next.js 15 (App Router, Turbopack) dashboard featuring a real-time SurferSEO-style SEO Score calculator, custom React select overlays, and human-in-the-loop outline editors.
+* *For setup and run instructions, please refer to the [Agentic SEO README](./agentic-seo/README.md) or the [Agentic SEO Türkçe Oku-Beni](./agentic-seo/README_TR.md).*
+
 ---
 
 ## 🛠️ Key Technologies Showcased
 
-- **Frontend**: Flutter (Dart), Next.js (React/TypeScript), TailwindCSS, Lottie, Framer Motion
-- **Backend & Database**: Node.js (TypeScript), Python (FastAPI), Express, PostgreSQL, Prisma ORM, Redis
-- **Integrations & AI**: Gemini AI (Image Scan & Text APIs), Firebase Auth, Apple/Google StoreKit billing interfaces, Speech-to-Text & TTS voice engines
-- **Methods**: Agentic Workflows, AI-Assisted Pair Programming, Rapid Prototyping
+- **Frontend**: Next.js (React/TypeScript), Flutter (Dart), TailwindCSS, Vanilla CSS, Lottie, Framer Motion
+- **Backend & Database**: Node.js (TypeScript), Python (FastAPI), Express, Puppeteer, PostgreSQL, Prisma ORM, Redis
+- **Integrations & AI**: Gemini AI (Image Scan, Text, and Translation APIs), Schema.org (JSON-LD), Firebase Auth, Apple/Google StoreKit billing interfaces, Speech-to-Text & TTS voice engines
+- **Methods**: Agentic Workflows, AI-Assisted Pair Programming, Rapid Prototyping, Human-in-the-Loop Orchestration
 
