@@ -5,8 +5,8 @@ A high-performance, professional-grade **AI-Assisted Software Engineering** show
 This platform is a **highly functional, high-fidelity rapid prototype (Proof of Concept)** designed to demonstrate robust **System Thinking** and **Human-in-the-Loop Orchestration** within automated content marketing workflows.
 
 > [!NOTE]
-> ⏱️ **The 2-Hour High-Speed Engineering Challenge**
-> This entire full-stack platform—comprising Puppeteer scrapers, multi-agent AI semantic planners, an interactive React-based layout editor, and robust error fallback databases—was fully architected, coded, styled, and validated in **under 2 hours** as a showcase of modern **AI-assisted rapid prototyping**. 
+> ⏱️ **The 4-Hour High-Speed Engineering Challenge**
+> This entire full-stack platform—comprising Puppeteer scrapers, multi-agent AI semantic planners, an interactive React-based layout editor, and robust error fallback databases—was fully architected, coded, styled, and validated in **under 4 hours** as a showcase of modern **AI-assisted rapid prototyping**. 
 >
 > It serves as a proof of concept demonstrating how a senior engineer leveraging agentic workflows can move from concept to a gorgeous, production-grade functional prototype with extreme velocity, without sacrificing structural patterns or type safety.
 
@@ -19,6 +19,28 @@ The user interface features a clean, highly functional light-mode design optimiz
 - **GPU-Accelerated Micro-Animations:** Dynamic UI elements leverage hardware-accelerated animations (`translate3d`, `will-change`) to deliver fluid, responsive transitions.
 - **Custom-Engineered Select Dropdowns:** Bypasses native browser controls with React-stateful select menus featuring dynamic z-index overlays to ensure clean layering over dashboard contents.
 - **Fluid Responsive Grids:** Implements flexible CSS Grid and Flexbox layouts to maintain visual hierarchy and structure across all viewport sizes.
+
+---
+
+## 🤖 Advanced Agentic Capabilities
+
+This showcase has been recently upgraded with state-of-the-art agentic workflows and automated loops that elevate it into a fully autonomous SEO operation:
+
+### 1. GEO Citation Scorer (Generative Engine Optimization)
+- **Deep Cognitive Analysis:** Evaluates the generated copy against generative search engine algorithms (Gemini, Perplexity, OpenAI Search).
+- **Vulnerability & Entity Extraction:** Automatically calculates an advanced **GEO Score**, lists extracted semantic entities, and recommends immediate content enhancements to maximize citation and source referencing rates.
+
+### 2. Multi-Agent SEO War Room (Live Stream)
+- **Real-Time Agentic Orchestration:** Visualizes the parallel execution of dedicated sub-agents (**Orchestrator Agent**, **Researcher Agent**, **Strategist Agent**, **Writer Agent**, **Creative Designer**, and **Technical SEO Auditor**).
+- **Collaborative Log Stream:** Users can watch the live dialog and technical collaboration steps taken by specialized agents in real-time as they outline, optimize, crawl, design, and publish.
+
+### 3. Competitor Watcher & Autonomous Counter-Offensive
+- **Sitemap & RSS Scraping:** Constantly monitors or parses competitor domains to identify newly published topics.
+- **Topic Cluster Planner:** Automatically generates an AI-driven **Counter-Offensive Plan** comprising core Pillar Posts and supporting semantic sub-articles, instantly adding them to the autonomous queuing system.
+
+### 4. Autonomous Sentinel & Self-Reflection Recovery
+- **Continuous Performance Auditing:** Simulates active Google Search Console tracking to detect organic rank drops for active keywords.
+- **Self-Reflection Rewrite Engine:** Triggers an autonomous revision agent that compares the underperforming post with live competitors, generates an enhanced semantic rewrite with optimized SurferSEO scores, and presents a ready-to-approve recovery draft in the dashboard for one-click publishing or dismissal.
 
 ---
 
